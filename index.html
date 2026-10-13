@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="claro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio web personal de Matías Juncal: presentación, formación, tecnologías y proyectos.">
+  <title>Matías Juncal | Portfolio web</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="js/script.js" defer></script>
+</head>
+
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- ENCABEZADO -->
+  <header class="encabezado">
+    <div class="contenedor cabecera">
+      <a class="logo" href="#inicio" aria-label="Ir al inicio">Matías Juncal</a>
+
+      <button class="menu-toggle" id="btn-menu" type="button"
+              aria-expanded="false" aria-controls="menu-principal">
+        Menú
+      </button>
+
+      <nav class="navegacion" id="menu-principal" aria-label="Navegación principal">
+        <ul class="menu-lista">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <button class="boton-tema" id="btn-tema" type="button" aria-pressed="false">
+        <span class="tema-texto">Modo oscuro</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- INICIO -->
+    <section class="seccion hero-seccion" id="inicio" aria-labelledby="titulo-inicio">
+      <div class="contenedor hero">
+        <div class="hero-texto">
+          <h1 id="titulo-inicio">Hola, soy Matías Juncal</h1>
+          <p class="hero-presentacion">
+            Estudiante apasionado por la tecnología y la innovación tecnológica.
+            Este portfolio reúne lo que estoy aprendiendo y los
+            proyectos que fui construyendo.
+          </p>
+          <p class="area-interes">
+            <strong>Área de interés:</strong> desarrollo de software
+          </p>
+          <div class="acciones">
+            <a class="boton" href="#proyectos">Ver mis proyectos</a>
+            <a class="boton boton-secundario" href="#contacto">Escribirme</a>
+          </div>
+        </div>
+
+        <figure class="hero-figura">
+          <img src="img/avatar.jpeg" alt="Imagen de perfil" width="480" height="480">
+          <figcaption class="insignia">Técnico en informática</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section class="seccion" id="sobre-mi" aria-labelledby="titulo-sobre-mi">
+      <div class="contenedor">
+        <h2 class="titulo-seccion" id="titulo-sobre-mi">Sobre mí</h2>
+        <p class="intro">Un poco de mi recorrido, lo que me interesa y las herramientas con las que trabajo.</p>
+
+        <div class="sobre-grid">
+          <article class="tarjeta">
+            <h3>Presentación</h3>
+            <p>
+              Soy Matías Juncal, tengo 20 años y vivo en Posadas, Misiones. Me encanta la informática en general y la he estudiado durante gran parte de mi vida.
+            </p>
+          </article>
+
+          <article class="tarjeta">
+            <h3>Formación</h3>
+            <ul class="lista-simple">
+              <li>Técnico superior en programación e innovación tecnológica, INCADE (2025 – en curso)</li>
+              <li>Técnico en informática personal y profesional, E.P.E.T N°1 (2019 – 2024)</li>
+              <li>Introducción a la ciencia de datos, Santander Open Academy (2025)</li>
+              <li>Internet de las cosas (IOT), Santander Open Academy (2025)</li>
+              <li>Introducción a Python, Santander Open Academy (2025)</li>
+            </ul>
+          </article>
+
+          <article class="tarjeta">
+            <h3>Intereses</h3>
+            <ul class="lista-simple">
+              <li>Diseño de interfaces y experiencia de usuario</li>
+              <li>Bases de datos y desarrollo web</li>
+              <li>Videojuegos y tecnología</li>
+              <li>Aprender algo nuevo cada semana</li>
+            </ul>
+          </article>
+
+          <article class="tarjeta">
+            <h3>Habilidades</h3>
+            <ul class="lista-simple">
+              <li>Resolución de problemas</li>
+              <li>Trabajo en equipo</li>
+              <li>Organización y autonomía</li>
+              <li>Comunicación clara</li>
+            </ul>
+          </article>
+
+          <article class="tarjeta tarjeta-ancha" id="tecnologias">
+            <h3>Tecnologías</h3>
+            <p class="leyenda">Borde sólido: las conozco. Borde punteado: las estoy aprendiendo.</p>
+
+            <div class="filtros" role="group" aria-label="Filtrar tecnologías">
+              <button class="filtro activo" type="button" data-filtro="todas" aria-pressed="true">Todas</button>
+              <button class="filtro" type="button" data-filtro="conozco" aria-pressed="false">Las conozco</button>
+              <button class="filtro" type="button" data-filtro="aprendiendo" aria-pressed="false">Aprendiendo</button>
+            </div>
+
+            <ul class="lista-habilidades" id="lista-tecnologias">
+              <li class="chip" data-categoria="conozco">HTML5</li>
+              <li class="chip" data-categoria="conozco">CSS3</li>
+              <li class="chip" data-categoria="conozco">Flexbox y Grid</li>
+              <li class="chip" data-categoria="conozco">Git y GitHub</li>
+              <li class="chip" data-categoria="aprendiendo">JavaScript</li>
+              <li class="chip" data-categoria="aprendiendo">Diseño responsive</li>
+              <li class="chip" data-categoria="aprendiendo">SQL</li>
+              <li class="chip" data-categoria="aprendiendo">Node.js</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section class="seccion" id="proyectos" aria-labelledby="titulo-proyectos">
+      <div class="contenedor">
+        <h2 class="titulo-seccion" id="titulo-proyectos">Proyectos</h2>
+        <p class="intro">Trabajos realizados durante mi formación. Podés buscar por nombre o por tecnología.</p>
+
+        <div class="buscador">
+          <label for="buscador-proyectos">Buscar proyecto</label>
+          <input type="search" id="buscador-proyectos" name="buscador"
+                 placeholder="Ej.: JavaScript, tienda, CSS" autocomplete="off">
+          <p class="cantidad" id="cantidad-proyectos" aria-live="polite"></p>
+        </div>
+
+        <div class="galeria" id="galeria-proyectos">
+
+          <!-- PROYECTO 1 -->
+          <article class="tarjeta tarjeta-proyecto">
+            <figure>
+              <img src="img/proyecto1.jpeg" alt="Captura de ejemplo del proyecto Portfolio web personal"
+                   width="640" height="400" loading="lazy">
+            </figure>
+            <div class="proyecto-cuerpo">
+              <h3>Portfolio web personal</h3>
+              <p>El sitio que estás viendo: presenta mi perfil, mis tecnologías y mis proyectos, con diseño adaptable y modo oscuro.</p>
+              <ul class="tecnologias" aria-label="Tecnologías utilizadas">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>Git y GitHub</li>
+              </ul>
+              <a class="enlace-proyecto" href="https://github.com/tu-usuario/portfolio-nombre-apellido"
+                 target="_blank" rel="noopener noreferrer">Ver repositorio</a>
+            </div>
+          </article>
+
+          <!-- PROYECTO 2 -->
+          <article class="tarjeta tarjeta-proyecto">
+            <figure>
+              <img src="img/proyecto2.jpeg" alt="Captura de ejemplo del proyecto Maqueta de tienda online"
+                   width="640" height="400" loading="lazy">
+            </figure>
+            <div class="proyecto-cuerpo">
+              <h3>E-Commerce Online</h3>
+              <p>Diseño de una tienda con catálogo de productos en tarjetas y base de datos.</p>
+              <ul class="tecnologias" aria-label="Tecnologías utilizadas">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>PHP</li>
+                <li>SQL</li>
+              </ul>
+              <a class="enlace-proyecto" href="#proyectos">Ver proyecto</a>
+            </div>
+          </article>
+
+          <!-- PROYECTO 3 -->
+          <article class="tarjeta tarjeta-proyecto">
+            <figure>
+              <img src="img/proyecto3.jpeg" alt="Captura de ejemplo del proyecto Aplicación Móvil"
+                   width="640" height="400" loading="lazy">
+            </figure>
+            <div class="proyecto-cuerpo">
+              <h3>App móvil de presupuestos</h3>
+              <p>Aplicación móvil para android que agrega, completa y elimina presupuestos. Calcula costos y genera documentación para emprendedores.</p>
+              <ul class="tecnologias" aria-label="Tecnologías utilizadas">
+                <li>Java</li>
+                <li>Kotlin</li>
+                <li>SQLite</li>
+              </ul>
+              <a class="enlace-proyecto" href="#proyectos">Ver proyecto</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="seccion" id="contacto" aria-labelledby="titulo-contacto">
+      <div class="contenedor">
+        <h2 class="titulo-seccion" id="titulo-contacto">Contacto</h2>
+        <p class="intro">¿Tenés una consulta o querés que trabajemos juntos? Escribime.</p>
+
+        <div class="contacto-layout">
+          <aside class="tarjeta datos-contacto" aria-label="Otras formas de contacto">
+            <h3>Otras vías</h3>
+            <ul class="lista-simple">
+              <li><a href="mailto:matiasjuncalivan@gmail.com">matiasjuncalivan@gmail.com</a></li>
+              <li><a href="https://github.com/mavancal" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              <li><a href="https://www.linkedin.com/in/matias-juncal" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            </ul>
+          </aside>
+
+          <form class="tarjeta formulario" id="form-contacto" novalidate>
+            <div class="campo">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo"
+                     autocomplete="name" required>
+            </div>
+
+            <div class="campo">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="nombre@dominio.com"
+                     autocomplete="email" required>
+            </div>
+
+            <div class="campo">
+              <label for="motivo">Motivo de contacto</label>
+              <select id="motivo" name="motivo" required>
+                <option value="">Elegí una opción</option>
+                <option value="proyecto">Propuesta de proyecto</option>
+                <option value="consulta">Consulta general</option>
+                <option value="colaboracion">Colaboración</option>
+              </select>
+            </div>
+
+            <div class="campo">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" rows="5" maxlength="300"
+                        placeholder="Escribí tu mensaje" required></textarea>
+              <p class="contador" id="contador-mensaje">0 / 300</p>
+            </div>
+
+            <div class="campo campo-check">
+              <input type="checkbox" id="copia" name="copia">
+              <label for="copia">Quiero recibir una copia de mi mensaje</label>
+            </div>
+
+            <button class="boton" type="submit">Enviar mensaje</button>
+
+            <div id="estado" class="estado" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="pie">
+    <div class="contenedor pie-contenido">
+      <p>&copy; <span id="anio">2026</span> Matías Juncal. Hecho con HTML, CSS y JavaScript.</p>
+      <p><a href="#inicio">Volver al inicio</a></p>
+    </div>
+  </footer>
+
+  <a class="volver-arriba" href="#inicio" aria-label="Volver arriba">&uarr;</a>
+</body>
+</html>
