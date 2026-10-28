@@ -8,6 +8,9 @@ dotenv.config();
 // Inicializar la conexión a la BD (crea el archivo y el esquema si no existen)
 import './db/connection';
 
+import proyectosRouter from './routes/proyectos.routes';
+import { errorHandler } from './middlewares/errorHandler';
+
 const app = express();
 
 // ── Middlewares globales ──────────────────────────────────────────────────────
@@ -36,8 +39,8 @@ app.get('/api/health', (_req: Request, res: Response) => {
   res.json({ ok: true });
 });
 
-// Los routers de proyectos se montan en la Etapa 4
-// app.use('/api/proyectos', proyectosRouter);
+// CRUD de proyectos
+app.use('/api/proyectos', proyectosRouter);
 
 // ── 404 ───────────────────────────────────────────────────────────────────────
 
@@ -48,11 +51,10 @@ app.use((_req: Request, res: Response) => {
 
 // ── Manejo de errores ─────────────────────────────────────────────────────────
 
-// Firma de 4 parámetros obligatoria para que Express lo reconozca como errorHandler
+// Debe ir DESPUÉS de todas las rutas
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
-  console.error('[Error]', err.message);
-  res.status(500).json({ error: 'Error interno del servidor' });
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  errorHandler(err, req, res, next);
 });
 
 export default app;
