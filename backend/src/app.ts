@@ -2,8 +2,11 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-// Cargar variables de entorno desde .env
+// Cargar variables de entorno ANTES de cualquier otra importación
 dotenv.config();
+
+// Inicializar la conexión a la BD (crea el archivo y el esquema si no existen)
+import './db/connection';
 
 const app = express();
 
