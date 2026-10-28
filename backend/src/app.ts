@@ -33,19 +33,19 @@ app.get('/api/health', (_req: Request, res: Response) => {
   res.json({ ok: true });
 });
 
-// Aquí se montarán los routers de proyectos en etapas siguientes
+// Los routers de proyectos se montan en la Etapa 4
 // app.use('/api/proyectos', proyectosRouter);
 
 // ── 404 ───────────────────────────────────────────────────────────────────────
 
-// Cualquier ruta no definida devuelve JSON (no HTML de Express por defecto)
+// Cualquier ruta no definida devuelve JSON (no el HTML de Express por defecto)
 app.use((_req: Request, res: Response) => {
   res.status(404).json({ error: 'Ruta no encontrada' });
 });
 
 // ── Manejo de errores ─────────────────────────────────────────────────────────
 
-// El errorHandler se importará desde middlewares/errorHandler.ts en etapas siguientes
+// Firma de 4 parámetros obligatoria para que Express lo reconozca como errorHandler
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   console.error('[Error]', err.message);
