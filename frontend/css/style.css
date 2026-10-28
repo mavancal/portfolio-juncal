@@ -717,3 +717,119 @@ input[type="checkbox"] {
     transition: none !important;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   ESTILOS DEL PANEL DE ADMINISTRACIÓN
+   Usa exclusivamente las variables CSS existentes para que funcione
+   en modo claro y oscuro sin estilos adicionales de tema.
+══════════════════════════════════════════════════════════════════════════════ */
+
+/* Layout principal: formulario a la izquierda, lista a la derecha en pantallas grandes */
+.admin-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  padding-block: 2rem;
+}
+
+@media (min-width: 60rem) {
+  .admin-layout {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+/* Ayuda debajo de un campo (texto gris pequeño) */
+.campo-ayuda {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  color: var(--tinta-suave);
+}
+
+/* Contenedor de botones del formulario admin */
+.admin-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* ── Lista de proyectos en el admin ───────────────────────────────────────── */
+.lista-admin {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Cada ítem de la lista hereda .tarjeta y agrega su layout interno */
+.lista-admin-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Nombre del proyecto + chip de estado en la misma fila */
+.lista-admin-encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Chip de estado con texto: verde para publicado, gris para borrador */
+.lista-admin-estado {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.2em 0.6em;
+  border-radius: var(--radio);
+  white-space: nowrap;
+}
+
+.lista-admin-estado--publicado {
+  background-color: var(--ok);
+  color: var(--superficie);
+}
+
+.lista-admin-estado--borrador {
+  background-color: var(--tinta-suave);
+  color: var(--superficie);
+}
+
+/* Tecnologías en formato texto compacto */
+.lista-admin-tecs {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--tinta-suave);
+}
+
+/* Fila de botones Editar / Eliminar */
+.lista-admin-acciones {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Botón pequeño para usar en la lista */
+.boton-sm {
+  padding: 0.3em 0.85em;
+  font-size: 0.875rem;
+}
+
+/* Botón de peligro (eliminar) — usa el color de error del tema */
+.boton-peligro {
+  background-color: var(--error);
+  color: var(--superficie);
+  border: 2px solid var(--error);
+}
+
+.boton-peligro:hover,
+.boton-peligro:focus-visible {
+  opacity: 0.85;
+  outline: 2px solid var(--error);
+  outline-offset: 2px;
+}
+

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="claro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Evita que los buscadores indexen esta página de administración -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Administración de proyectos | Portfolio Matías Juncal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- api.js primero (define las funciones fetch), admin.js después -->
+  <!-- NO se carga script.js: falla sin menú ni formulario de contacto -->
+  <script src="js/api.js" defer></script>
+  <script src="js/admin.js" defer></script>
+</head>
+
+<body>
+  <!-- Encabezado simple sin menú móvil ni buscador -->
+  <header class="encabezado">
+    <div class="contenedor cabecera">
+      <span class="logo">Administración de proyectos</span>
+      <a class="boton boton-secundario" href="index.html">← Volver al portfolio</a>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="contenedor admin-layout">
+
+      <!-- ── FORMULARIO CREAR / EDITAR ──────────────────────────────────── -->
+      <section class="admin-formulario" aria-labelledby="titulo-form-admin">
+        <h2 class="titulo-seccion" id="titulo-form-admin">Nuevo proyecto</h2>
+
+        <!-- Aviso de estado de la operación (éxito o error) -->
+        <div id="admin-estado" class="estado" role="status" aria-live="polite"></div>
+
+        <form class="tarjeta" id="form-admin" novalidate>
+
+          <!-- Nombre -->
+          <div class="campo">
+            <label for="admin-nombre">Nombre <span aria-hidden="true">*</span></label>
+            <input type="text" id="admin-nombre" name="nombre"
+                   placeholder="Nombre del proyecto" autocomplete="off" required>
+          </div>
+
+          <!-- Descripción -->
+          <div class="campo">
+            <label for="admin-descripcion">Descripción <span aria-hidden="true">*</span></label>
+            <textarea id="admin-descripcion" name="descripcion" rows="3"
+                      placeholder="Descripción del proyecto (mínimo 10 caracteres)" required></textarea>
+          </div>
+
+          <!-- Tecnologías -->
+          <div class="campo">
+            <label for="admin-tecnologias">Tecnologías <span aria-hidden="true">*</span></label>
+            <input type="text" id="admin-tecnologias" name="tecnologias"
+                   placeholder="HTML, CSS, JavaScript (separadas por coma)" autocomplete="off">
+            <p class="campo-ayuda">Separalas con coma. Ejemplo: HTML, CSS, JavaScript</p>
+          </div>
+
+          <!-- URL de imagen -->
+          <div class="campo">
+            <label for="admin-imagen-url">URL o ruta de imagen</label>
+            <input type="text" id="admin-imagen-url" name="imagenUrl"
+                   placeholder="img/proyecto1.jpeg o https://ejemplo.com/img.png" autocomplete="off">
+          </div>
+
+          <!-- URL de enlace -->
+          <div class="campo">
+            <label for="admin-enlace-url">URL del repositorio o proyecto</label>
+            <input type="url" id="admin-enlace-url" name="enlaceUrl"
+                   placeholder="https://github.com/usuario/repo" autocomplete="off">
+          </div>
+
+          <!-- Estado de publicación -->
+          <div class="campo">
+            <label for="admin-estado-proyecto">Estado <span aria-hidden="true">*</span></label>
+            <select id="admin-estado-proyecto" name="estado" required>
+              <option value="borrador">Borrador (no visible en el portfolio)</option>
+              <option value="publicado">Publicado (visible en el portfolio)</option>
+            </select>
+          </div>
+
+          <!-- Botones de acción -->
+          <div class="admin-acciones">
+            <button class="boton" type="submit" id="admin-btn-guardar">Guardar proyecto</button>
+            <button class="boton boton-secundario" type="button"
+                    id="admin-btn-cancelar" hidden>Cancelar edición</button>
+          </div>
+
+        </form>
+      </section>
+
+      <!-- ── LISTA DE PROYECTOS ─────────────────────────────────────────── -->
+      <section class="admin-lista-seccion" aria-labelledby="titulo-lista-admin">
+        <h2 class="titulo-seccion" id="titulo-lista-admin">Todos los proyectos</h2>
+        <p class="intro">Incluye borradores. Usá los botones para editar o eliminar.</p>
+
+        <!-- Aviso de carga o error al obtener la lista -->
+        <p class="aviso" id="admin-lista-estado" role="status"></p>
+
+        <ul class="lista-admin" id="lista-admin" aria-label="Lista de proyectos"></ul>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie-contenido">
+      <p>Panel de administración · Solo para uso local · Sin autenticación</p>
+    </div>
+  </footer>
+</body>
+</html>
