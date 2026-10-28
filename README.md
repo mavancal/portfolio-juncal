@@ -185,7 +185,7 @@ flowchart LR
   G --> H["Repositorio\nlistar()"]
   H -->|SELECT SQL| E
   E -->|filas| H
-  H -->|Proyecto[]| G
+  H -->|"Proyecto[]"| G
   G -->|JSON 200| F
   F -->|crearTarjetaProyecto| I["DOM\n#galeria-proyectos"]
 ```
