@@ -12,6 +12,8 @@
 
   <link rel="stylesheet" href="css/style.css">
 
+  <!-- api.js debe cargarse ANTES que script.js (define apiObtenerProyectos, etc.) -->
+  <script src="js/api.js" defer></script>
   <script src="js/script.js" defer></script>
 </head>
 
@@ -135,6 +137,8 @@
               <li class="chip" data-categoria="aprendiendo">Diseño responsive</li>
               <li class="chip" data-categoria="aprendiendo">SQL</li>
               <li class="chip" data-categoria="aprendiendo">Node.js</li>
+              <li class="chip" data-categoria="aprendiendo">TypeScript</li>
+              <li class="chip" data-categoria="aprendiendo">Express</li>
             </ul>
           </article>
         </div>
@@ -155,66 +159,11 @@
         </div>
 
         <div class="galeria" id="galeria-proyectos">
-
-          <!-- PROYECTO 1 -->
-          <article class="tarjeta tarjeta-proyecto">
-            <figure>
-              <img src="img/proyecto1.jpeg" alt="Captura de ejemplo del proyecto Portfolio web personal"
-                   width="640" height="400" loading="lazy">
-            </figure>
-            <div class="proyecto-cuerpo">
-              <h3>Portfolio web personal</h3>
-              <p>El sitio que estás viendo: presenta mi perfil, mis tecnologías y mis proyectos, con diseño adaptable y modo oscuro.</p>
-              <ul class="tecnologias" aria-label="Tecnologías utilizadas">
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>Git y GitHub</li>
-              </ul>
-              <a class="enlace-proyecto" href="https://github.com/mavancal/portfolio-juncal"
-                 target="_blank" rel="noopener noreferrer">Ver repositorio</a>
-            </div>
-          </article>
-
-          <!-- PROYECTO 2 -->
-          <article class="tarjeta tarjeta-proyecto">
-            <figure>
-              <img src="img/proyecto2.jpeg" alt="Captura de ejemplo del proyecto Maqueta de tienda online"
-                   width="640" height="400" loading="lazy">
-            </figure>
-            <div class="proyecto-cuerpo">
-              <h3>E-Commerce Online</h3>
-              <p>Diseño de una tienda con catálogo de productos en tarjetas y base de datos.</p>
-              <ul class="tecnologias" aria-label="Tecnologías utilizadas">
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>PHP</li>
-                <li>SQL</li>
-              </ul>
-              <a class="enlace-proyecto" href="#proyectos">Ver proyecto</a>
-            </div>
-          </article>
-
-          <!-- PROYECTO 3 -->
-          <article class="tarjeta tarjeta-proyecto">
-            <figure>
-              <img src="img/proyecto3.jpeg" alt="Captura de ejemplo del proyecto Aplicación Móvil"
-                   width="640" height="400" loading="lazy">
-            </figure>
-            <div class="proyecto-cuerpo">
-              <h3>App móvil de presupuestos</h3>
-              <p>Aplicación móvil para android que agrega, completa y elimina presupuestos. Calcula costos y genera documentación para emprendedores.</p>
-              <ul class="tecnologias" aria-label="Tecnologías utilizadas">
-                <li>Java</li>
-                <li>Kotlin</li>
-                <li>SQLite</li>
-              </ul>
-              <a class="enlace-proyecto" href="#proyectos">Ver proyecto</a>
-            </div>
-          </article>
-
+          <!-- Las tarjetas se generan desde JavaScript al cargar desde la API -->
         </div>
+
+        <!-- Aviso de estado de carga: "Cargando…", error de red, o sin publicados -->
+        <p class="aviso" id="estado-proyectos" role="status"></p>
       </div>
     </section>
 
@@ -282,7 +231,7 @@
   <!-- PIE DE PÁGINA -->
   <footer class="pie">
     <div class="contenedor pie-contenido">
-      <p>&copy; <span id="anio">2026</span> Matías Juncal. Hecho con HTML, CSS y JavaScript.</p>
+      <p>&copy; <span id="anio">2026</span> Matías Juncal. Hecho con HTML, CSS, JavaScript, Node.js y TypeScript.</p>
       <p><a href="#inicio">Volver al inicio</a></p>
     </div>
   </footer>

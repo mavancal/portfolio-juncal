@@ -30,7 +30,9 @@ const itemsTecnologia = document.querySelectorAll('#lista-tecnologias .chip');
 
 const buscador = document.querySelector('#buscador-proyectos');
 const galeria = document.querySelector('#galeria-proyectos');
-const tarjetasProyecto = document.querySelectorAll('.tarjeta-proyecto');
+const estadoProyectos = document.querySelector('#estado-proyectos');
+// "let" en vez de "const": se reasigna después de cada renderizado dinámico
+let tarjetasProyecto = document.querySelectorAll('.tarjeta-proyecto');
 const cantidadProyectos = document.querySelector('#cantidad-proyectos');
 
 const formulario = document.querySelector('#form-contacto');
@@ -109,6 +111,8 @@ botonesFiltro.forEach(function (boton) {
 
 function buscarProyectos() {
   const texto = buscador.value.trim().toLowerCase();
+  // Consultar el DOM en cada llamada: así captura las tarjetas generadas dinámicamente
+  tarjetasProyecto = document.querySelectorAll('.tarjeta-proyecto');
   let visibles = 0;
 
   tarjetasProyecto.forEach(function (tarjeta) {
@@ -139,6 +143,107 @@ function buscarProyectos() {
 }
 
 buscador.addEventListener('input', buscarProyectos);
+
+/* ── PROYECTOS DESDE LA API ────────────────────────────────────────────────── */
+
+/**
+ * Construye el markup exacto de una tarjeta de proyecto usando createElement.
+ * Nunca usamos innerHTML con datos de la API para evitar inyección de código.
+ * @param {Object} proyecto - Objeto proyecto recibido de la API.
+ * @returns {HTMLElement} El article listo para insertarse en el DOM.
+ */
+function crearTarjetaProyecto(proyecto) {
+  // <article class="tarjeta tarjeta-proyecto">
+  const article = document.createElement('article');
+  article.className = 'tarjeta tarjeta-proyecto';
+
+  // <figure><img ...></figure>
+  const figure = document.createElement('figure');
+  const img = document.createElement('img');
+  img.src = proyecto.imagenUrl || 'img/placeholder-proyecto.svg';
+  img.alt = `Captura del proyecto ${proyecto.nombre}`;
+  img.width = 640;
+  img.height = 400;
+  img.loading = 'lazy';
+  figure.appendChild(img);
+
+  // <div class="proyecto-cuerpo">
+  const cuerpo = document.createElement('div');
+  cuerpo.className = 'proyecto-cuerpo';
+
+  // <h3>Nombre</h3>
+  const titulo = document.createElement('h3');
+  titulo.textContent = proyecto.nombre;
+
+  // <p>Descripción</p>
+  const descripcion = document.createElement('p');
+  descripcion.textContent = proyecto.descripcion;
+
+  // <ul class="tecnologias" aria-label="Tecnologías utilizadas">
+  const lista = document.createElement('ul');
+  lista.className = 'tecnologias';
+  lista.setAttribute('aria-label', 'Tecnologías utilizadas');
+  proyecto.tecnologias.forEach(function (tec) {
+    const li = document.createElement('li');
+    li.textContent = tec;
+    lista.appendChild(li);
+  });
+
+  cuerpo.appendChild(titulo);
+  cuerpo.appendChild(descripcion);
+  cuerpo.appendChild(lista);
+
+  // El enlace solo se muestra si existe enlaceUrl
+  if (proyecto.enlaceUrl) {
+    const enlace = document.createElement('a');
+    enlace.className = 'enlace-proyecto';
+    enlace.href = proyecto.enlaceUrl;
+    enlace.target = '_blank';
+    enlace.rel = 'noopener noreferrer';
+    enlace.textContent = 'Ver repositorio';
+    cuerpo.appendChild(enlace);
+  }
+
+  article.appendChild(figure);
+  article.appendChild(cuerpo);
+
+  return article;
+}
+
+/**
+ * Carga los proyectos publicados desde la API y los renderiza en la galería.
+ * Maneja tres estados de UI en #estado-proyectos:
+ *   1. "Cargando…"   — mientras espera la respuesta
+ *   2. Sin proyectos — si la BD no tiene publicados
+ *   3. Error de red  — si el backend no está disponible
+ */
+async function cargarProyectos() {
+  // Estado 1: cargando
+  estadoProyectos.textContent = 'Cargando proyectos…';
+  galeria.replaceChildren();
+
+  try {
+    const proyectos = await apiObtenerProyectos(true);
+
+    if (proyectos.length === 0) {
+      // Estado 2: sin proyectos publicados
+      estadoProyectos.textContent = 'Todavía no hay proyectos publicados.';
+    } else {
+      // Renderizar tarjetas
+      estadoProyectos.textContent = '';
+      proyectos.forEach(function (proyecto) {
+        galeria.appendChild(crearTarjetaProyecto(proyecto));
+      });
+    }
+  } catch (_err) {
+    // Estado 3: error de red o backend apagado
+    estadoProyectos.textContent =
+      'No se pudo conectar con el servidor. Verificá que el backend esté en ejecución.';
+  }
+
+  // Actualizar buscador DESPUÉS de que las tarjetas ya están en el DOM
+  buscarProyectos();
+}
 
 /* formulario*/
 
@@ -321,6 +426,6 @@ function mostrarAnioActual() {
 }
 
 aplicarTema(obtenerTemaInicial());
-buscarProyectos();
+cargarProyectos();
 actualizarContador();
 mostrarAnioActual();
